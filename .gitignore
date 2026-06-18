@@ -10,6 +10,9 @@ venv/
 .env.local
 *.env
 
+# Local logs
+aligo_sms.log
+
 # IDE
 .vscode/
 .idea/

@@ -527,38 +527,66 @@ function clearCardPreview() {
   previewBodyEl.textContent = '생일 대상자를 선택하시면 생일 축하 카드의 미리보기가 제공됩니다.';
 }
 
+async function requestBirthdaySms(donorIds) {
+  const response = await fetch('/api/birthday-sms', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      donor_ids: donorIds,
+      template_id: messageTemplateSelect.value
+    })
+  });
+  const result = await response.json();
+  if (!response.ok || !result.ok) {
+    const message = result.message || result.result?.message || '문자 발송에 실패했습니다.';
+    throw new Error(message);
+  }
+  return result.result;
+}
+
 // Send Birthday Card to Single Donor
-function sendBirthdayCard(id) {
+async function sendBirthdayCard(id) {
   const donor = donors.find(d => d.donor_id === id);
   if (!donor) return;
-  
-  sentBirthdayCards.add(id);
-  showToast(`🎉 ${donor.name} 후원자님께 생일 축하 카드가 발송되었습니다! (이메일 및 SMS 전송 완료)`, 'success');
-  
-  // Refresh Views
-  renderBirthdaySection();
+
+  try {
+    sendAllBtn.disabled = true;
+    const result = await requestBirthdaySms([id]);
+    sentBirthdayCards.add(id);
+    showToast(`${donor.name} 후원자님께 생일 축하 문자를 발송 요청했습니다. (${result.msg_type}, testmode=${result.testmode_yn})`, 'success');
+  } catch (error) {
+    console.error('Birthday SMS send error:', error);
+    showToast(error.message, 'error');
+  } finally {
+    renderBirthdaySection();
+  }
 }
 
 // Send all birthday cards for the current list
-function sendAllBirthdayCards() {
+async function sendAllBirthdayCards() {
   const { today, month } = getBirthdayDonors();
   const currentList = selectedBirthdayTab === 'today' ? today : month;
-  
-  let sentCount = 0;
-  currentList.forEach(d => {
-    if (!sentBirthdayCards.has(d.donor_id)) {
-      sentBirthdayCards.add(d.donor_id);
-      sentCount++;
-    }
-  });
-  
-  if (sentCount > 0) {
-    showToast(`🎉 총 ${sentCount}명의 생일자에게 생일 축하 카드가 일괄 발송되었습니다!`, 'success');
-  } else {
+
+  const targetDonorIds = currentList
+    .filter(d => !sentBirthdayCards.has(d.donor_id))
+    .map(d => d.donor_id);
+
+  if (targetDonorIds.length === 0) {
     showToast('이미 모든 생일자에게 발송을 완료했습니다.', 'info');
+    return;
   }
-  
-  renderBirthdaySection();
+
+  try {
+    sendAllBtn.disabled = true;
+    const result = await requestBirthdaySms(targetDonorIds);
+    targetDonorIds.forEach(id => sentBirthdayCards.add(id));
+    showToast(`총 ${targetDonorIds.length}명의 생일자에게 문자 발송을 요청했습니다. (${result.msg_type}, testmode=${result.testmode_yn})`, 'success');
+  } catch (error) {
+    console.error('Birthday SMS bulk send error:', error);
+    showToast(error.message, 'error');
+  } finally {
+    renderBirthdaySection();
+  }
 }
 
 // Toast Alert System
