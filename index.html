@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>하트쉐어(HeartShare) - 후원자 관리 대시보드</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- 사이드바 -->
+    <aside class="sidebar">
+      <div class="logo-area">
+        <i data-lucide="heart" class="logo-icon animate-pulse"></i>
+        <h2>HeartShare</h2>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" data-target="dashboard"><i data-lucide="layout-dashboard"></i> 대시보드</a>
+        <a href="#birthday-section" class="nav-item" data-target="birthday"><i data-lucide="cake"></i> 생일자 관리</a>
+        <a href="#donor-list-section" class="nav-item" data-target="donors"><i data-lucide="users"></i> 후원자 명단</a>
+      </nav>
+      <div class="sidebar-footer">
+        <p>복지기관 MVP v1.0</p>
+      </div>
+    </aside>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="main-content">
+      <!-- 헤더 -->
+      <header class="main-header">
+        <div class="header-title">
+          <h1>후원자 관리 대시보드</h1>
+          <p class="subtitle">실시간 후원 통계 및 생일 축하 발송 현황</p>
+        </div>
+        <div class="header-profile">
+          <span class="date-badge"><i data-lucide="calendar"></i> <span id="current-date"></span></span>
+          <div class="profile-info">
+            <span class="role">관리자</span>
+            <span class="name">행복복지재단</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- KPI 카드 섹션 -->
+      <section class="kpi-section">
+        <div class="kpi-card">
+          <div class="kpi-icon-wrapper blue">
+            <i data-lucide="users"></i>
+          </div>
+          <div class="kpi-data">
+            <h3>총 후원자</h3>
+            <p id="kpi-total-donors">0명</p>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon-wrapper emerald">
+            <i data-lucide="heart-handshake"></i>
+          </div>
+          <div class="kpi-data">
+            <h3>활성 정기후원</h3>
+            <p id="kpi-active-regular">0명</p>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon-wrapper violet">
+            <i data-lucide="coins"></i>
+          </div>
+          <div class="kpi-data">
+            <h3>당월 후원 총액</h3>
+            <p id="kpi-total-amount">0원</p>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon-wrapper amber">
+            <i data-lucide="trending-up"></i>
+          </div>
+          <div class="kpi-data">
+            <h3>평균 후원금액</h3>
+            <p id="kpi-avg-amount">0원</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 통계 차트 섹션 -->
+      <section class="charts-section">
+        <div class="chart-card">
+          <h3>관심 분야별 분포</h3>
+          <div class="chart-container">
+            <canvas id="interestChart"></canvas>
+          </div>
+        </div>
+        <div class="chart-card">
+          <h3>연령대 분포</h3>
+          <div class="chart-container">
+            <canvas id="ageChart"></canvas>
+          </div>
+        </div>
+        <div class="chart-card">
+          <h3>납부 방식 비율</h3>
+          <div class="chart-container">
+            <canvas id="paymentChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- 생일자 관리 구역 (Birthday Zone) -->
+      <section id="birthday-section" class="dashboard-block birthday-section">
+        <div class="block-header">
+          <div class="block-title">
+            <i data-lucide="cake" class="title-icon"></i>
+            <h2>생일 축하 카드 발송 관리</h2>
+          </div>
+          <div class="birthday-tabs">
+            <button class="tab-btn active" data-tab="today">오늘 생일자 (<span id="today-count">0</span>)</button>
+            <button class="tab-btn" data-tab="month">이번 달 생일자 (<span id="month-count">0</span>)</button>
+          </div>
+        </div>
+        
+        <div class="birthday-content">
+          <div class="birthday-list-wrapper">
+            <div id="birthday-list" class="birthday-list">
+              <!-- 생일자 리스트가 JS로 채워짐 -->
+              <div class="empty-state">생일 데이터를 불러오고 있습니다...</div>
+            </div>
+          </div>
+          
+          <div class="card-generator-wrapper">
+            <h3><i data-lucide="eye"></i> 생일 축하 메시지 미리보기</h3>
+            <div class="card-preview" id="card-preview">
+              <div class="card-design">
+                <div class="card-decor-1">🎁</div>
+                <div class="card-decor-2">🎂</div>
+                <div class="card-content-box">
+                  <h4 class="card-greeting">Happy Birthday!</h4>
+                  <p class="card-to" id="preview-to">**후원자님께</p>
+                  <p class="card-body" id="preview-body">후원자님의 따뜻한 동행 덕분에 세상이 더욱 밝아집니다. 뜻깊은 생일을 진심으로 축하드리며, 오늘 하루 행복이 가득하시기를 바랍니다.</p>
+                  <p class="card-from">- 행복복지재단 임직원 일동 -</p>
+                </div>
+              </div>
+            </div>
+            <div class="template-selector">
+              <label for="message-template">템플릿 선택:</label>
+              <select id="message-template">
+                <option value="1">기본형 (따뜻함과 감사)</option>
+                <option value="2">감동형 (동행에 대한 찬사)</option>
+                <option value="3">심플형 (간결한 축하)</option>
+              </select>
+            </div>
+            <button id="send-all-btn" class="btn btn-primary btn-full"><i data-lucide="sparkles"></i> 축하 카드 일괄 발송</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 후원자 목록 테이블 섹션 -->
+      <section id="donor-list-section" class="dashboard-block donor-list-section">
+        <div class="block-header search-header">
+          <div class="block-title">
+            <i data-lucide="users" class="title-icon"></i>
+            <h2>전체 후원자 명단</h2>
+          </div>
+        </div>
+
+        <!-- 필터 바 -->
+        <div class="filter-bar">
+          <div class="search-input-wrapper">
+            <i data-lucide="search" class="search-icon"></i>
+            <input type="text" id="search-input" placeholder="이름, 연락처, 이메일 검색...">
+          </div>
+          <div class="filter-dropdowns">
+            <div class="filter-select">
+              <select id="filter-type">
+                <option value="">후원 유형 (전체)</option>
+                <option value="정기후원">정기후원</option>
+                <option value="일시후원">일시후원</option>
+              </select>
+            </div>
+            <div class="filter-select">
+              <select id="filter-status">
+                <option value="">후원 상태 (전체)</option>
+                <option value="활성">활성</option>
+                <option value="중단">중단</option>
+                <option value="완료">완료</option>
+              </select>
+            </div>
+            <div class="filter-select">
+              <select id="filter-interest">
+                <option value="">관심 분야 (전체)</option>
+                <option value="아동복지">아동복지</option>
+                <option value="노인복지">노인복지</option>
+                <option value="장애인복지">장애인복지</option>
+                <option value="다문화가정">다문화가정</option>
+                <option value="환경보호">환경보호</option>
+                <option value="재난구호">재난구호</option>
+              </select>
+            </div>
+            <button id="reset-filters" class="btn btn-secondary"><i data-lucide="rotate-ccw"></i> 초기화</button>
+          </div>
+        </div>
+
+        <!-- 테이블 영역 -->
+        <div class="table-container">
+          <table class="donor-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>이름</th>
+                <th>생일</th>
+                <th>연락처</th>
+                <th>이메일</th>
+                <th>후원 유형</th>
+                <th>후원 금액</th>
+                <th>납부 방식</th>
+                <th>가입일</th>
+                <th>상태</th>
+                <th>관심 분야</th>
+              </tr>
+            </thead>
+            <tbody id="donor-table-body">
+              <!-- JS로 데이터 채워짐 -->
+            </tbody>
+          </table>
+        </div>
+        
+        <!-- 페이징 영역 -->
+        <div class="pagination-bar">
+          <span class="pagination-info">총 <span id="filtered-count">0</span>명 중 <span id="page-range">0-0</span>명 표시</span>
+          <div class="pagination-controls">
+            <button id="prev-page-btn" class="btn btn-secondary pagination-btn"><i data-lucide="chevron-left"></i></button>
+            <span id="page-numbers"></span>
+            <button id="next-page-btn" class="btn btn-secondary pagination-btn"><i data-lucide="chevron-right"></i></button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- 토스트 알림 컨테이너 -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="app.js"></script>
+  <script>
+    // Lucide Icons 초기화
+    lucide.createIcons();
+  </script>
+</body>
+</html>

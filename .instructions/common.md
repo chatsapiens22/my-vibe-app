@@ -1,13 +1,13 @@
 # Project: prj_0618
 
 ## Overview
-- 목적: 복지 기관 후원자 관리 자동화 MVP 구축
-- 기술스택: Python 3.11 / HTML5 / CSS3 / Vanilla JavaScript
+- 목적: 복지 기관 후원자 관리 자동화 MVP 및 통계 대시보드 구축
+- 기술스택: Python 3.11 / HTML5 / CSS3 / Vanilla JavaScript / Chart.js (CDN)
 - 패키지 매니저: pip
 
 ## Dev Commands
 - 설치: — (기본 라이브러리 사용)
-- 실행: python3 generate_donors.py
+- 실행: python3 generate_donors.py (데이터 생성) \| python3 -m http.server 8000 (대시보드 실행)
 - 테스트: python3 generate_donors.py
 - 린트: —
 
