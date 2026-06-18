@@ -171,13 +171,14 @@ function updateKPIs() {
 function initCharts() {
   // Colors Palette
   const colors = {
-    yellow: '#ffd400',
-    black: '#0b0b0b',
-    emerald: '#00b86b',
-    amber: '#ff8a00',
-    rose: '#ff3b5f',
-    blue: '#1f7aff',
-    violet: '#7d5fff'
+    cream: '#fff4e4',
+    cocoa: '#6d402c',
+    terracotta: '#d96f4c',
+    clay: '#e8a174',
+    sage: '#679e76',
+    rose: '#d97889',
+    lavender: '#b883b8',
+    blue: '#7ba7bd'
   };
 
   // Destroy previous charts if exist
@@ -198,9 +199,9 @@ function initCharts() {
       labels: Object.keys(interestData),
       datasets: [{
         data: Object.values(interestData),
-        backgroundColor: [colors.yellow, colors.black, colors.emerald, colors.amber, colors.rose, colors.blue],
-        borderColor: '#0b0b0b',
-        borderWidth: 4
+        backgroundColor: [colors.terracotta, colors.clay, colors.sage, colors.rose, colors.lavender, colors.blue],
+        borderColor: '#fff4e4',
+        borderWidth: 3
       }]
     },
     options: {
@@ -209,7 +210,7 @@ function initCharts() {
       plugins: {
         legend: {
           position: 'right',
-          labels: { color: '#0b0b0b', font: { family: 'Archivo, Noto Sans KR, sans-serif', weight: '900' } }
+          labels: { color: '#6d402c', font: { family: 'Nunito Sans, Noto Sans KR, sans-serif', weight: '800' } }
         }
       }
     }
@@ -237,10 +238,10 @@ function initCharts() {
       datasets: [{
         label: '인원수 (명)',
         data: Object.values(ageRanges),
-        backgroundColor: colors.yellow,
-        borderColor: colors.black,
-        borderRadius: 0,
-        borderWidth: 3
+        backgroundColor: colors.clay,
+        borderColor: colors.cream,
+        borderRadius: 14,
+        borderWidth: 2
       }]
     },
     options: {
@@ -250,8 +251,8 @@ function initCharts() {
         legend: { display: false }
       },
       scales: {
-        x: { grid: { display: false }, ticks: { color: '#0b0b0b', font: { weight: '900' } } },
-        y: { grid: { color: 'rgba(11, 11, 11, 0.18)' }, ticks: { color: '#0b0b0b', font: { weight: '900' } } }
+        x: { grid: { display: false }, ticks: { color: '#8f6954', font: { weight: '800' } } },
+        y: { grid: { color: 'rgba(122, 72, 43, 0.12)' }, ticks: { color: '#8f6954', font: { weight: '800' } } }
       }
     }
   });
@@ -269,9 +270,9 @@ function initCharts() {
       labels: Object.keys(paymentData),
       datasets: [{
         data: Object.values(paymentData),
-        backgroundColor: [colors.yellow, colors.blue, colors.rose],
-        borderColor: '#0b0b0b',
-        borderWidth: 4
+        backgroundColor: [colors.terracotta, colors.sage, colors.lavender],
+        borderColor: '#fff4e4',
+        borderWidth: 3
       }]
     },
     options: {
@@ -280,7 +281,7 @@ function initCharts() {
       plugins: {
         legend: {
           position: 'right',
-          labels: { color: '#0b0b0b', font: { family: 'Archivo, Noto Sans KR, sans-serif', weight: '900' } }
+          labels: { color: '#6d402c', font: { family: 'Nunito Sans, Noto Sans KR, sans-serif', weight: '800' } }
         }
       }
     }
