@@ -179,7 +179,7 @@ def verify_data(json_path, csv_path, expected_count=200):
     print("🎉 모든 데이터 검증이 정상적으로 통과되었습니다!")
 
 if __name__ == "__main__":
-    donors = generate_donors_data(200)
+    donors = generate_donors_data(1200)
     
     json_file = "donors.json"
     csv_file = "donors.csv"
@@ -190,4 +190,4 @@ if __name__ == "__main__":
     print(f"데이터 파일 생성 완료: {json_file}, {csv_file}")
     
     # 자체 검증 실행
-    verify_data(json_file, csv_file, 200)
+    verify_data(json_file, csv_file, 1200)
