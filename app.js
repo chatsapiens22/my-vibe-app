@@ -171,13 +171,13 @@ function updateKPIs() {
 function initCharts() {
   // Colors Palette
   const colors = {
-    purple: '#8b5cf6',
-    indigo: '#6366f1',
-    emerald: '#10b981',
-    amber: '#f59e0b',
-    rose: '#f43f5e',
-    blue: '#3b82f6',
-    slate: '#475569'
+    yellow: '#ffd400',
+    black: '#0b0b0b',
+    emerald: '#00b86b',
+    amber: '#ff8a00',
+    rose: '#ff3b5f',
+    blue: '#1f7aff',
+    violet: '#7d5fff'
   };
 
   // Destroy previous charts if exist
@@ -198,9 +198,9 @@ function initCharts() {
       labels: Object.keys(interestData),
       datasets: [{
         data: Object.values(interestData),
-        backgroundColor: [colors.indigo, colors.emerald, colors.violet, colors.amber, colors.rose, colors.blue],
-        borderColor: '#ffffff',
-        borderWidth: 2
+        backgroundColor: [colors.yellow, colors.black, colors.emerald, colors.amber, colors.rose, colors.blue],
+        borderColor: '#0b0b0b',
+        borderWidth: 4
       }]
     },
     options: {
@@ -209,7 +209,7 @@ function initCharts() {
       plugins: {
         legend: {
           position: 'right',
-          labels: { color: '#64748b', font: { family: 'Outfit, sans-serif' } }
+          labels: { color: '#0b0b0b', font: { family: 'Archivo, Noto Sans KR, sans-serif', weight: '900' } }
         }
       }
     }
@@ -237,9 +237,10 @@ function initCharts() {
       datasets: [{
         label: '인원수 (명)',
         data: Object.values(ageRanges),
-        backgroundColor: colors.emerald,
-        borderRadius: 8,
-        borderWidth: 0
+        backgroundColor: colors.yellow,
+        borderColor: colors.black,
+        borderRadius: 0,
+        borderWidth: 3
       }]
     },
     options: {
@@ -249,8 +250,8 @@ function initCharts() {
         legend: { display: false }
       },
       scales: {
-        x: { grid: { display: false }, ticks: { color: '#64748b' } },
-        y: { grid: { color: 'rgba(0, 0, 0, 0.05)' }, ticks: { color: '#64748b' } }
+        x: { grid: { display: false }, ticks: { color: '#0b0b0b', font: { weight: '900' } } },
+        y: { grid: { color: 'rgba(11, 11, 11, 0.18)' }, ticks: { color: '#0b0b0b', font: { weight: '900' } } }
       }
     }
   });
@@ -268,9 +269,9 @@ function initCharts() {
       labels: Object.keys(paymentData),
       datasets: [{
         data: Object.values(paymentData),
-        backgroundColor: [colors.violet, colors.blue, colors.amber],
-        borderColor: '#ffffff',
-        borderWidth: 2
+        backgroundColor: [colors.yellow, colors.blue, colors.rose],
+        borderColor: '#0b0b0b',
+        borderWidth: 4
       }]
     },
     options: {
@@ -279,7 +280,7 @@ function initCharts() {
       plugins: {
         legend: {
           position: 'right',
-          labels: { color: '#64748b', font: { family: 'Outfit, sans-serif' } }
+          labels: { color: '#0b0b0b', font: { family: 'Archivo, Noto Sans KR, sans-serif', weight: '900' } }
         }
       }
     }
