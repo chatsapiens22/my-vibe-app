@@ -1,35 +1,35 @@
 /* CSS Variables & Theme Reset */
 :root {
-  --bg-primary: #0b0f19;
-  --bg-secondary: #121826;
-  --bg-card: rgba(26, 33, 50, 0.75);
-  --border-color: rgba(255, 255, 255, 0.08);
+  --bg-primary: #f8fafc; /* Very light slate gray */
+  --bg-secondary: #ffffff; /* Pure white sidebar/main blocks */
+  --bg-card: rgba(255, 255, 255, 0.8); /* White glassmorphism */
+  --border-color: rgba(15, 23, 42, 0.08); /* Dark slate subtle border */
   --border-color-active: rgba(99, 102, 241, 0.4);
   
-  --text-main: #f3f4f6;
-  --text-muted: #9ca3af;
+  --text-main: #0f172a; /* Dark slate text */
+  --text-muted: #64748b; /* Cool gray muted text */
   
   /* Accent Colors */
-  --primary: #6366f1; /* Indigo */
-  --primary-hover: #4f46e5;
-  --primary-glow: rgba(99, 102, 241, 0.2);
+  --primary: #4f46e5; /* Indigo */
+  --primary-hover: #4338ca;
+  --primary-glow: rgba(79, 70, 229, 0.1);
   
-  --emerald: #10b981; /* Active/Success */
-  --emerald-hover: #059669;
-  --emerald-glow: rgba(16, 185, 129, 0.2);
+  --emerald: #059669; /* Emerald */
+  --emerald-hover: #047857;
+  --emerald-glow: rgba(5, 150, 105, 0.1);
   
-  --violet: #8b5cf6;
-  --violet-glow: rgba(139, 92, 246, 0.2);
+  --violet: #7c3aed;
+  --violet-glow: rgba(124, 58, 237, 0.1);
   
-  --amber: #f59e0b;
-  --amber-glow: rgba(245, 158, 11, 0.2);
+  --amber: #d97706;
+  --amber-glow: rgba(217, 119, 6, 0.1);
   
-  --rose: #f43f5e;
-  --rose-glow: rgba(244, 63, 94, 0.2);
+  --rose: #e11d48;
+  --rose-glow: rgba(225, 29, 72, 0.1);
   
   --font-main: 'Outfit', 'Noto Sans KR', sans-serif;
-  --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
-  --card-blur: blur(12px);
+  --card-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+  --card-blur: blur(20px);
   --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -47,8 +47,8 @@ body {
   overflow-x: hidden;
   line-height: 1.5;
   background-image: 
-    radial-gradient(at 10% 20%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
-    radial-gradient(at 90% 80%, rgba(16, 185, 129, 0.08) 0px, transparent 50%);
+    radial-gradient(at 10% 20%, rgba(99, 102, 241, 0.03) 0px, transparent 50%),
+    radial-gradient(at 90% 80%, rgba(5, 150, 105, 0.03) 0px, transparent 50%);
   background-attachment: fixed;
 }
 
@@ -119,14 +119,14 @@ body {
 
 .nav-item:hover, .nav-item.active {
   color: var(--text-main);
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(15, 23, 42, 0.04);
 }
 
 .nav-item.active {
-  background: linear-gradient(135deg, var(--primary-glow), rgba(255,255,255,0.02));
+  background: linear-gradient(135deg, var(--primary-glow), rgba(0,0,0,0.01));
   border: 1px solid var(--border-color-active);
-  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.1);
-  color: var(--text-main);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.05);
+  color: var(--primary);
 }
 
 .sidebar-footer {
@@ -231,8 +231,8 @@ body {
 
 .kpi-card:hover {
   transform: translateY(-5px);
-  border-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  border-color: rgba(15, 23, 42, 0.15);
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.06);
 }
 
 .kpi-icon-wrapper {
@@ -416,12 +416,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(15, 23, 42, 0.1);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(15, 23, 42, 0.25);
 }
 
 .birthday-list {
@@ -431,7 +431,7 @@ body {
 }
 
 .birthday-item {
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(15, 23, 42, 0.02);
   border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 1rem;
@@ -685,14 +685,14 @@ select:focus {
 }
 
 .btn-secondary {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(15, 23, 42, 0.04);
   color: var(--text-main);
   border-color: var(--border-color);
 }
 
 .btn-secondary:hover {
-  background-color: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(15, 23, 42, 0.08);
+  border-color: rgba(15, 23, 42, 0.12);
 }
 
 .btn-full {
@@ -776,7 +776,7 @@ select:focus {
   overflow-x: auto;
   border: 1px solid var(--border-color);
   border-radius: 12px;
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--bg-secondary);
   margin-bottom: 1.5rem;
 }
 
@@ -788,7 +788,7 @@ select:focus {
 }
 
 .donor-table th {
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(15, 23, 42, 0.02);
   padding: 1rem;
   font-weight: 600;
   color: var(--text-muted);
@@ -807,7 +807,7 @@ select:focus {
 }
 
 .donor-table tr:hover td {
-  background-color: rgba(255, 255, 255, 0.01);
+  background-color: rgba(15, 23, 42, 0.01);
 }
 
 /* Badges for status, donation type, interest */
@@ -824,7 +824,7 @@ select:focus {
 }
 
 .badge-status.stopped {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(15, 23, 42, 0.05);
   color: var(--text-muted);
 }
 

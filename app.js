@@ -199,7 +199,7 @@ function initCharts() {
       datasets: [{
         data: Object.values(interestData),
         backgroundColor: [colors.indigo, colors.emerald, colors.violet, colors.amber, colors.rose, colors.blue],
-        borderColor: '#121826',
+        borderColor: '#ffffff',
         borderWidth: 2
       }]
     },
@@ -209,7 +209,7 @@ function initCharts() {
       plugins: {
         legend: {
           position: 'right',
-          labels: { color: '#9ca3af', font: { family: 'Outfit, sans-serif' } }
+          labels: { color: '#64748b', font: { family: 'Outfit, sans-serif' } }
         }
       }
     }
@@ -249,8 +249,8 @@ function initCharts() {
         legend: { display: false }
       },
       scales: {
-        x: { grid: { display: false }, ticks: { color: '#9ca3af' } },
-        y: { grid: { color: 'rgba(255, 255, 255, 0.05)' }, ticks: { color: '#9ca3af' } }
+        x: { grid: { display: false }, ticks: { color: '#64748b' } },
+        y: { grid: { color: 'rgba(0, 0, 0, 0.05)' }, ticks: { color: '#64748b' } }
       }
     }
   });
@@ -269,7 +269,7 @@ function initCharts() {
       datasets: [{
         data: Object.values(paymentData),
         backgroundColor: [colors.violet, colors.blue, colors.amber],
-        borderColor: '#121826',
+        borderColor: '#ffffff',
         borderWidth: 2
       }]
     },
@@ -279,7 +279,7 @@ function initCharts() {
       plugins: {
         legend: {
           position: 'right',
-          labels: { color: '#9ca3af', font: { family: 'Outfit, sans-serif' } }
+          labels: { color: '#64748b', font: { family: 'Outfit, sans-serif' } }
         }
       }
     }
