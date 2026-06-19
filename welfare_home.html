@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>빛고을사회복지관 - 따뜻한 안심 공동체</title>
+    <!-- Pretendard 고가독성 폰트 로드 -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <style>
+        :root {
+            --bg-color: #FAF8F5;
+            --card-bg: #FFFFFF;
+            --text-primary: #2C2A29;
+            --text-secondary: #6B6865;
+            --primary: #5A7568; /* 세이지 올리브 그린 */
+            --primary-light: #EFF3F0;
+            --secondary: #D4A373; /* 테라코타 오렌지 */
+            --secondary-light: #FEF6EB;
+            --border-color: #EAE5DF;
+            --shadow-sm: 0 2px 8px rgba(44, 42, 41, 0.04);
+            --shadow-md: 0 10px 30px rgba(44, 42, 41, 0.06);
+            --shadow-hover: 0 16px 40px rgba(90, 117, 104, 0.12);
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.7;
+            letter-spacing: -0.02em;
+        }
+
+        /* 헤더 / 네비게이션 */
+        nav {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+
+        /* 컨테이너 */
+        .container {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 히어로 영역 */
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 50px;
+            align-items: center;
+            padding: 80px 0;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-text h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            line-height: 1.25;
+            margin-bottom: 24px;
+            word-break: keep-all;
+        }
+
+        .hero-text h1 span {
+            color: var(--primary);
+        }
+
+        .hero-text p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            word-break: keep-all;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: #FFFFFF;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-smooth);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+            background-color: #485E53;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            border-radius: 28px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+        }
+
+        /* 소식지 카테고리 섹션 */
+        .newsletter-section {
+            padding: 80px 0 120px 0;
+            border-top: 1px solid var(--border-color);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary);
+        }
+
+        .card-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            background-color: var(--primary-light);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .card:hover .card-img {
+            transform: scale(1.04);
+        }
+
+        .card-content {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-badge {
+            display: inline-block;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 6px;
+            align-self: flex-start;
+            margin-bottom: 14px;
+        }
+
+        .card.community .card-badge {
+            background-color: var(--secondary-light);
+            color: var(--secondary);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            line-height: 1.4;
+            color: var(--text-primary);
+        }
+
+        .card-desc {
+            font-size: 0.98rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 24px;
+            flex-grow: 1;
+            word-break: keep-all;
+        }
+
+        .card-link {
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition-smooth);
+        }
+
+        .card-link:hover {
+            color: var(--text-primary);
+        }
+
+        /* 푸터 */
+        footer {
+            background-color: var(--text-primary);
+            color: #FFFFFF;
+            padding: 60px 0;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+            margin-bottom: 12px;
+        }
+
+        footer .info {
+            opacity: 0.6;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        /* 애니메이션 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 반응형 */
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+                padding: 50px 0;
+            }
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            .hero-image {
+                max-width: 420px;
+                margin: 0 auto;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 상단 네비게이션 -->
+    <nav>
+        <a href="#" class="logo">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <span>빛고을사회복지관</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#" class="active">홈</a></li>
+            <li><a href="#newsletter-list">소식지</a></li>
+        </ul>
+    </nav>
+
+    <!-- 히어로 섹션 -->
+    <section class="container hero">
+        <div class="hero-text">
+            <h1>이웃의 안심과 미소를 잇는 <span>빛고을 사회복지관</span></h1>
+            <p>우리는 거동이 불편하신 어르신들의 식사를 살피고, 청년들의 안전한 골목길 안심 귀가를 도우며, 다문화 가족 등 다양한 이웃과 온기 넘치는 매일을 함께 지어가고 있습니다.</p>
+            <a href="#newsletter-list" class="btn">복지관 소식 보기</a>
+        </div>
+        <img class="hero-image" src="./welfare_hero_v3.png" alt="마을 정원에서 다 함께 식물을 심으며 웃고 있는 다양한 세대 일러스트">
+    </section>
+
+    <!-- 소식지 카테고리 섹션 -->
+    <section class="newsletter-section" id="newsletter-list">
+        <div class="container">
+            <div class="section-title">
+                <h2>복지관 소식지 & 동향 보고서</h2>
+                <p>빛고을사회복지관의 지난주 이야기와 2026년 최신 국내외 복지 정책의 변화를 한눈에 모아보세요.</p>
+            </div>
+
+            <div class="grid">
+                <!-- 소식지 3호 -->
+                <article class="card community">
+                    <div class="card-img-wrapper">
+                        <img class="card-img" src="./welfare_hero_v3.png" alt="뉴스레터 3호 히어로 일러스트">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-badge">사랑방 소식지</span>
+                        <h3 class="card-title">[빛고을 사랑방] 제3호</h3>
+                        <p class="card-desc">시니어 목공예 교실 작품 전시회 소식, 야간 안심귀가 '반딧불이' 출범 소식과 더불어 2026년 청년 지원 금융/주거 혜택 소식을 수록했습니다.</p>
+                        <a href="./welfare_newsletter_v3.html" class="card-link">
+                            <span>소식지 읽기</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 소식지 2호 -->
+                <article class="card community">
+                    <div class="card-img-wrapper">
+                        <img class="card-img" src="./welfare_hero_v2.png" alt="뉴스레터 2호 히어로 일러스트">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-badge">사랑방 소식지</span>
+                        <h3 class="card-title">[빛고을 사랑방] 제2호</h3>
+                        <p class="card-desc">독거 어르신 여름 선풍기 설치 지원, 옥상 텃밭 수확 나눔과 상반기 사랑 나눔 바자회 소식, 그리고 최중증 장애인 돌봄 수당 소식을 담았습니다.</p>
+                        <a href="./welfare_newsletter_v2.html" class="card-link">
+                            <span>소식지 읽기</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 소식지 1호 -->
+                <article class="card community">
+                    <div class="card-img-wrapper">
+                        <img class="card-img" src="./welfare_hero.png" alt="뉴스레터 1호 히어로 일러스트">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-badge">사랑방 소식지</span>
+                        <h3 class="card-title">[빛고을 사랑방] 제1호</h3>
+                        <p class="card-desc">빛고을 복지관의 거동 불편 어르신 반찬 나눔 소식과 시니어 디지털 배움터 개강, 희망 멘토링 발대식 소식을 복지 정책들과 함께 전달합니다.</p>
+                        <a href="./welfare_newsletter.html" class="card-link">
+                            <span>소식지 읽기</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 정책 보고서 -->
+                <article class="card">
+                    <div class="card-img-wrapper">
+                        <img class="card-img" src="./welfare_hero.png" alt="정책 동향 히어로 일러스트" style="filter: hue-rotate(45deg);">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-badge">정책 보고서</span>
+                        <h3 class="card-title">2026 복지 패러다임 동향</h3>
+                        <p class="card-desc">대한민국의 지역 통합돌봄 및 기초소득 보장 변화와 글로벌 복지국가들의 AI 도입 정밀 행정, UBI 기본소득 보완 대책을 심층 분석한 리포트입니다.</p>
+                        <a href="./welfare_news.html" class="card-link">
+                            <span>보고서 보기</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+        <div class="container">
+            <p>빛고을사회복지관</p>
+            <div class="info">
+                <p>광주광역시 남구 빛고을로 123 (안심동) | 대표전화: 062-123-4567 | 팩스: 062-123-4568</p>
+                <p>Copyright © 2026 Bitgoeul Social Welfare Center. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
