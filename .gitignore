@@ -24,7 +24,18 @@ Thumbs.db
 # Antigravity
 .gemini/
 
+# bkit plugin state
+.bkit/
+
 # Build
 dist/
 build/
 *.egg-info/
+.gstack/
+
+# Temporary screenshots & logs
+*screenshot.png
+welfare_screenshot.png
+birthday-card-preview.png
+newsletter_send.log
+.playwright-mcp/

@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 국내외 복지 정책 및 트렌드 동향</title>
+    <!-- Pretendard 고가독성 폰트 로드 -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <style>
+        /* 변수 설정 - 따뜻하고 세련된 웜 뉴트럴 팔레트 */
+        :root {
+            --bg-color: #FAF8F5;
+            --card-bg: #FFFFFF;
+            --text-primary: #2C2A29;
+            --text-secondary: #6B6865;
+            --primary: #5A7568; /* 차분한 세이지 올리브 그린 */
+            --primary-light: #EFF3F0;
+            --secondary: #D4A373; /* 따뜻한 테라코타 오렌지 */
+            --secondary-light: #FEF6EB;
+            --accent: #4A6B82; /* 차분한 클래식 블루 */
+            --accent-light: #EEF4F8;
+            --border-color: #EAE5DF;
+            --shadow-sm: 0 2px 8px rgba(44, 42, 41, 0.04);
+            --shadow-md: 0 10px 30px rgba(44, 42, 41, 0.06);
+            --shadow-hover: 0 16px 40px rgba(90, 117, 104, 0.12);
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* 기본 초기화 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.7;
+            letter-spacing: -0.02em;
+            padding: 0 20px;
+        }
+
+        /* 레이아웃 구조 */
+        .container {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 60px 0 100px 0;
+        }
+
+        /* 헤더 스타일 */
+        header {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 70px;
+            position: relative;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .header-image {
+            width: 100%;
+            height: auto;
+            border-radius: 24px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition-smooth);
+        }
+
+        .header-image:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .category-badge {
+            display: inline-block;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.3;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            word-break: keep-all;
+        }
+
+        header p.subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+            word-break: keep-all;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: flex-start;
+            gap: 20px;
+            margin-top: 24px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* 퀵 서머리 그리드 */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 60px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .summary-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .summary-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: var(--primary);
+            opacity: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .summary-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary);
+        }
+
+        .summary-card:hover::before {
+            opacity: 1;
+        }
+
+        .summary-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .summary-icon.orange {
+            background-color: var(--secondary-light);
+            color: var(--secondary);
+        }
+
+        .summary-icon.green {
+            background-color: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .summary-icon.blue {
+            background-color: var(--accent-light);
+            color: var(--accent);
+        }
+
+        .summary-card h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .summary-card .value {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            word-break: keep-all;
+        }
+
+        /* 메인 콘텐츠 스플릿 뷰 */
+        .section-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        /* 각 메인 섹션 */
+        .main-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            padding: 50px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 40px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 36px;
+            border-bottom: 2px solid var(--bg-color);
+            padding-bottom: 20px;
+        }
+
+        .section-badge {
+            background-color: var(--primary);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+
+        .section-header.global .section-badge {
+            background-color: var(--accent);
+        }
+
+        .section-header h2 {
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        /* 디테일 리스트 */
+        .policy-item {
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 30px;
+            transition: var(--transition-smooth);
+        }
+
+        .policy-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .policy-label {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .policy-tag {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .section-header.global + .policy-list .policy-tag {
+            color: var(--accent);
+        }
+
+        .policy-label h4 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.4;
+            word-break: keep-all;
+        }
+
+        .policy-content p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            word-break: keep-all;
+        }
+
+        .highlight-box {
+            background-color: var(--primary-light);
+            border-radius: 12px;
+            padding: 14px 20px;
+            font-size: 0.95rem;
+            color: var(--primary);
+            font-weight: 600;
+            display: inline-block;
+            word-break: keep-all;
+        }
+
+        .section-header.global + .policy-list .highlight-box {
+            background-color: var(--accent-light);
+            color: var(--accent);
+        }
+
+        /* 푸터 스타일 */
+        footer {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            animation: fadeInUp 1.4s ease-out;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        footer .links {
+            display: flex;
+            gap: 24px;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        footer a:hover {
+            color: var(--primary);
+        }
+
+        /* 애니메이션 키프레임 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 반응형 디바이스 최적화 */
+        @media (max-width: 900px) {
+            header {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 30px;
+                margin-bottom: 50px;
+            }
+            .header-content {
+                align-items: center;
+            }
+            .header-image {
+                margin: 0 auto;
+                max-width: 320px;
+            }
+            .meta-info {
+                justify-content: center;
+            }
+            .summary-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .policy-item {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .main-section {
+                padding: 30px;
+            }
+            header h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+            header h1 {
+                font-size: 1.85rem;
+            }
+            footer {
+                flex-direction: column;
+                text-align: center;
+            }
+            footer .links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 헤더 영역 -->
+        <header id="header">
+            <div class="header-content">
+                <span class="category-badge">Trend Report</span>
+                <h1>2026 복지 패러다임의 변화</h1>
+                <p class="subtitle">초고령사회와 새로운 고용 시장 변화에 대처하는 국내외 핵심 복지 정책 및 트렌드 분석 보고서</p>
+                
+                <div class="meta-info">
+                    <div class="meta-item">
+                        <!-- 달력 아이콘 -->
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                        <span>2026년 6월 업데이트</span>
+                    </div>
+                    <div class="meta-item">
+                        <!-- 문서 아이콘 -->
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        <span>복지 정책 브리핑</span>
+                    </div>
+                </div>
+            </div>
+            <img class="header-image" src="./welfare_hero.png" alt="따뜻한 커뮤니티 케어 일러스트">
+        </header>
+
+        <!-- 퀵 서머리 그리드 -->
+        <section class="summary-grid" id="quick-summary">
+            <!-- 요약 카드 1 -->
+            <div class="summary-card">
+                <div class="summary-icon green">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                </div>
+                <h3>지역 돌봄 통합</h3>
+                <div class="value">커뮤니티 케어 시행</div>
+            </div>
+            <!-- 요약 카드 2 -->
+            <div class="summary-card">
+                <div class="summary-icon orange">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <h3>소득 보장</h3>
+                <div class="value">의료 부양의무 폐지</div>
+            </div>
+            <!-- 요약 카드 3 -->
+            <div class="summary-card">
+                <div class="summary-icon blue">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <h3>육아/출산</h3>
+                <div class="value">출산크레딧 첫째 확대</div>
+            </div>
+            <!-- 요약 카드 4 -->
+            <div class="summary-card">
+                <div class="summary-icon green">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                </div>
+                <h3>전달 체계</h3>
+                <div class="value">보편적 AI 안전망 구축</div>
+            </div>
+        </section>
+
+        <!-- 세부 콘텐츠 영역 -->
+        <main class="section-wrapper">
+            
+            <!-- 국내 복지 섹션 -->
+            <section class="main-section" id="domestic-section">
+                <div class="section-header">
+                    <span class="section-badge">Domestic</span>
+                    <h2>국내 주요 복지 정책 변화</h2>
+                </div>
+
+                <div class="policy-list">
+                    <!-- 정책 1 -->
+                    <article class="policy-item">
+                        <div class="policy-label">
+                            <span class="policy-tag">
+                                <span style="display:inline-block; width:6px; height:6px; background-color:var(--primary); border-radius:50%;"></span>
+                                노인복지
+                            </span>
+                            <h4>지역사회 통합돌봄<br>(커뮤니티 케어)</h4>
+                        </div>
+                        <div class="policy-content">
+                            <p>2026년 3월부터 본격 시행된 정책으로, 노인 분들이 익숙한 자신의 집이나 동네에서 의료, 주거, 복지 통합 서비스를 제공받아 삶의 존엄성을 마지막까지 유지할 수 있도록 돕습니다.</p>
+                            <span class="highlight-box">개별 필요에 맞춘 1:1 '돌봄 패키지' 서비스 설계</span>
+                        </div>
+                    </article>
+
+                    <!-- 정책 2 -->
+                    <article class="policy-item">
+                        <div class="policy-label">
+                            <span class="policy-tag">
+                                <span style="display:inline-block; width:6px; height:6px; background-color:var(--primary); border-radius:50%;"></span>
+                                취약계층
+                            </span>
+                            <h4>의료급여<br>부양의무자 기준 폐지</h4>
+                        </div>
+                        <div class="policy-content">
+                            <p>실제 가족의 부양 지원이 없음에도 명목상 자녀나 부모가 있다는 이유로 지원을 받지 못하던 사각지대 문제를 근본적으로 해소하기 위해 부양의무자 기준을 전면 폐지했습니다.</p>
+                            <span class="highlight-box">4인 가구 기준 생계급여 최대 207.8만 원으로 인상</span>
+                        </div>
+                    </article>
+
+                    <!-- 정책 3 -->
+                    <article class="policy-item">
+                        <div class="policy-label">
+                            <span class="policy-tag">
+                                <span style="display:inline-block; width:6px; height:6px; background-color:var(--primary); border-radius:50%;"></span>
+                                출산/양육
+                            </span>
+                            <h4>국민연금<br>출산크레딧 혜택 확대</h4>
+                        </div>
+                        <div class="policy-content">
+                            <p>저출산 해소를 가속화하기 위해 기존 둘째 아이 출산 시부터 지원하던 국민연금 납부 인정 혜택을 이제 첫째 아이 출산 시부터 지원하도록 개정되었습니다.</p>
+                            <span class="highlight-box">육아기 근로시간 단축 시 지원하는 급여 상한액 최대 250만 원</span>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- 국외 복지 섹션 -->
+            <section class="main-section" id="global-section">
+                <div class="section-header global">
+                    <span class="section-badge">Global</span>
+                    <h2>글로벌 복지 정책 트렌드</h2>
+                </div>
+
+                <div class="policy-list">
+                    <!-- 트렌드 1 -->
+                    <article class="policy-item">
+                        <div class="policy-label">
+                            <span class="policy-tag">
+                                <span style="display:inline-block; width:6px; height:6px; background-color:var(--accent); border-radius:50%;"></span>
+                                디지털 혁신
+                            </span>
+                            <h4>복지 사각지대 발굴을 위한 빅데이터 연계</h4>
+                        </div>
+                        <div class="policy-content">
+                            <p>복잡한 증빙이나 직접 신청 절차 없이도 공공 기관의 다양한 빅데이터를 연계하여 지원이 절실한 대상자를 먼저 알아채고 서비스를 제공하는 '디지털 보편주의'로 나아가고 있습니다.</p>
+                            <span class="highlight-box">유럽 연합(EU) 중심의 정보 보장 가이드라인 동시 도입</span>
+                        </div>
+                    </article>
+
+                    <!-- 트렌드 2 -->
+                    <article class="policy-item">
+                        <div class="policy-label">
+                            <span class="policy-tag">
+                                <span style="display:inline-block; width:6px; height:6px; background-color:var(--accent); border-radius:50%;"></span>
+                                소득 보장 대안
+                            </span>
+                            <h4>범주형 타겟팅<br>(Categorical Targeting)</h4>
+                        </div>
+                        <div class="policy-content">
+                            <p>보편적 기본소득(UBI)의 과도한 재정 부담 대안으로, 장애나 연령, 아동 등 취약 상황이 입증된 범주에 재원을 집중하여 소득 안전망을 확보하는 트렌드가 강세를 보이고 있습니다.</p>
+                            <span class="highlight-box">노동 환경의 변화를 방어하기 위한 한시적 기본소득 대안 부상</span>
+                        </div>
+                    </article>
+
+                    <!-- 트렌드 3 -->
+                    <article class="policy-item">
+                        <div class="policy-label">
+                            <span class="policy-tag">
+                                <span style="display:inline-block; width:6px; height:6px; background-color:var(--accent); border-radius:50%;"></span>
+                                경제적 효과
+                            </span>
+                            <h4>복지를 소비가 아닌<br>'성장 동력'으로 정의</h4>
+                        </div>
+                        <div class="policy-content">
+                            <p>복지를 일방적인 비용 지출로 규정하는 낡은 패러다임에서 벗어나, 돌봄 경제 활성화를 통해 새로운 일자리를 늘리고 경제의 선순환을 유도하는 투자 모델로 활용합니다.</p>
+                            <span class="highlight-box">돌봄 로봇 및 디지털 헬스케어의 산업 육성 동시 진행</span>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- 푸터 영역 -->
+        <footer id="footer">
+            <p>© 2026 복지 정보 허브. All Rights Reserved.</p>
+            <div class="links">
+                <a href="https://www.bokjiro.go.kr" target="_blank" rel="noopener noreferrer">
+                    <span>복지로 바로가기</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
